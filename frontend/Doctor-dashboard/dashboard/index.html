@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; font-src 'self' https://fonts.gstatic.com; connect-src 'self' http://127.0.0.1:8080;"
+    />
+    <title>Dr. Priyalatha Krishnan – Dashboard</title>
+    <link href="dash-style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="main-content">
+        <!-- Header Section -->
+        <header class="header">
+          <h1 class="page-title">Dashboard Overview</h1>
+          <button
+            id="refreshDashboardBtn"
+            class="refresh-btn"
+            title="Refresh Dashboard"
+          >
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M6.35 17.65C7.80 19.10 9.80 20 12 20c4.41 0 8-3.59 8-8h-2l3-3 3 3h-2
+                 c0 5.52-4.48 10-10 10-2.76 0-5.26-1.12-7.07-2.93L6.35 17.65z
+                 M17.65 6.35C16.20 4.90 14.20 4 12 4c-4.41 0-8 3.59-8 8h2l-3 3-3-3h2
+                 c0-5.52 4.48-10 10-10 2.76 0 5.26 1.12 7.07 2.93L17.65 6.35z"
+                fill="currentColor"
+              />
+            </svg>
+          </button>
+        </header>
+
+        <!-- Dashboard Summary Section -->
+        <section class="dashboard-summary">
+          <div class="summary-card">
+            <h3>Total Patients</h3>
+            <p id="totalPatients">Loading...</p>
+          </div>
+        </section>
+
+        <!-- Upcoming Appointments Section -->
+        <section class="upcoming-appointments">
+          <div class="appointments-header">
+            <h3>Upcoming Appointments</h3>
+            <button
+              id="refreshAppointmentsBtn"
+              class="refresh-btn"
+              title="Refresh Appointments"
+            >
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M6.35 17.65C7.80 19.10 9.80 20 12 20c4.41 0 8-3.59 8-8h-2l3-3 3 3h-2
+                   c0 5.52-4.48 10-10 10-2.76 0-5.26-1.12-7.07-2.93L6.35 17.65z
+                   M17.65 6.35C16.20 4.90 14.20 4 12 4c-4.41 0-8 3.59-8 8h2l-3 3-3-3h2
+                   c0-5.52 4.48-10 10-10 2.76 0 5.26 1.12 7.07 2.93L17.65 6.35z"
+                  fill="currentColor"
+                />
+              </svg>
+            </button>
+          </div>
+          <div class="appointments-list" id="appointmentsContainer">
+            <!-- Sample appointments to be replaced by dynamic content -->
+            <div class="appointment-item">
+              <div class="appointment-info">
+                <div class="patient-name">Rajesh Kumar</div>
+                <div class="appointment-details">
+                  <div class="appointment-time">Today, 10:30 AM</div>
+                  <div class="appointment-type">Consultation</div>
+                </div>
+              </div>
+              <div class="appointment-actions">
+                <button class="action-btn view">View</button>
+                <button class="action-btn finished">Finished</button>
+              </div>
+            </div>
+            <div class="appointment-item">
+              <div class="appointment-info">
+                <div class="patient-name">Priya Sharma</div>
+                <div class="appointment-details">
+                  <div class="appointment-time">Today, 11:15 AM</div>
+                  <div class="appointment-type">Follow-up</div>
+                </div>
+              </div>
+              <div class="appointment-actions">
+                <button class="action-btn view">View</button>
+                <button class="action-btn finished">Finished</button>
+              </div>
+            </div>
+            <div class="appointment-item">
+              <div class="appointment-info">
+                <div class="patient-name">Sanjay Patel</div>
+                <div class="appointment-details">
+                  <div class="appointment-time">Today, 12:00 PM</div>
+                  <div class="appointment-type">New Patient</div>
+                </div>
+              </div>
+              <div class="appointment-actions">
+                <button class="action-btn view">View</button>
+                <button class="action-btn finished">Finished</button>
+              </div>
+            </div>
+          </div>
+          <div class="pagination-controls">
+            <button id="prevPage" class="pagination-btn">Previous</button>
+            <span id="currentPage">Page 1</span>
+            <button id="nextPage" class="pagination-btn">Next</button>
+          </div>
+        </section>
+
+        <!-- Appointment Detail Modal -->
+        <div id="appointmentDetailModal" class="modal hidden">
+          <div class="modal-content">
+            <h3>Appointment Details</h3>
+            <div class="detail-row">
+              <strong>Patient Name:</strong> <span id="detailName"></span>
+            </div>
+            <div class="detail-row">
+              <strong>Date:</strong> <span id="detailDate"></span>
+            </div>
+            <div class="detail-row">
+              <strong>Time:</strong> <span id="detailTime"></span>
+            </div>
+            <div class="detail-row">
+              <strong>Type:</strong> <span id="detailType"></span>
+            </div>
+            <div class="detail-row">
+              <strong>Mobile:</strong> <span id="detailMobile"></span>
+            </div>
+            <div class="detail-row">
+              <strong>DOB:</strong> <span id="detailDOB"></span>
+            </div>
+            <div class="detail-row">
+              <strong>Weight:</strong> <span id="detailWeight"></span> kg
+            </div>
+            <div class="detail-row">
+              <strong>Token:</strong> <span id="detailToken"></span>
+            </div>
+            <div class="action-buttons">
+              <button id="completeAppointmentBtn" class="action-btn complete">
+                Complete
+              </button>
+              <button id="cancelAppointmentBtn" class="action-btn cancel">
+                Cancel
+              </button>
+              <button id="closeDetailBtn" class="cancel-btn">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script type="module" src="./js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dr. Priyalatha Krishnan's Clinic – Appointment Booking</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- Notification Bar Component -->
+    <div id="alertBar" class="notification-bar notification-success hidden">
+      <div class="notification-message" id="alertMessage">
+        Operation completed successfully!
+      </div>
+      <button class="notification-close" id="alertClose">&times;</button>
+    </div>
+
+    <div class="app-container">
+      <div class="content-wrapper">
+        <!-- Action Cards -->
+        <section id="quickActions" class="action-cards">
+          <div class="action-card book-appointment" id="addPatientCard">
+            <div class="action-icon">
+              <svg width="32" height="32" fill="#0052cc" viewBox="0 0 24 24">
+                <path d="M19 13H13v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+              </svg>
+            </div>
+            <div class="action-title">Book Appointment</div>
+            <div class="action-description">Schedule a clinic visit</div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- Booking Modal -->
+    <div id="overlay" class="modal-overlay hidden">
+      <div class="modal-content">
+        <button class="modal-close-btn" id="overlayClose">×</button>
+        <div class="booking-container">
+          <div class="booking-header">
+            <h1>Book an Appointment</h1>
+            <p>Fill in the details to schedule your appointment</p>
+          </div>
+
+          <div class="patient-info-display hidden">
+            <div id="patient-code" class="patient-code"></div>
+            <div class="patient-info-card"></div>
+          </div>
+          <form>
+            <!-- Patient Information -->
+            <div class="form-block">
+              <legend>Patient Information</legend>
+              <div class="input-group">
+                <label for="patient-id" class="input-label"
+                  >Patient ID (Numeric)</label
+                >
+                <input
+                  type="number"
+                  class="input-field"
+                  id="patient-id"
+                  required
+                  placeholder="Enter Patient ID"
+                />
+              </div>
+            </div>
+
+            <!-- Appointment Date -->
+            <div class="input-group">
+              <label for="appointment-date" class="input-label"
+                >Appointment Date</label
+              >
+              <input
+                type="date"
+                class="input-field"
+                id="appointment-date"
+                required
+              />
+            </div>
+
+            <!-- Appointment Type -->
+            <div class="input-group">
+              <label for="appointment-type" class="input-label"
+                >Appointment Type</label
+              >
+              <select class="input-select" id="appointment-type" required>
+                <option value="">Select Type</option>
+                <option value="checkup">Regular Check-up</option>
+                <option value="follow_up">Follow-up Visit</option>
+                <option value="emergency">Emergency</option>
+                <option value="consultation">Consultation</option>
+                <option value="procedure">Medical Procedure</option>
+              </select>
+            </div>
+
+            <!-- Buttons -->
+            <div class="button-group">
+              <button type="reset" class="secondary-button">Clear</button>
+              <button type="submit" class="primary-button">
+                Book Appointment
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script type="module" src="js/alert.js"></script>
+    <script type="module" src="js/api.js"></script>
+    <script type="module" src="js/dom.js"></script>
+  </body>
+</html>

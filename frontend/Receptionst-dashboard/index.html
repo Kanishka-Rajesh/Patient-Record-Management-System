@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; font-src 'self' https://fonts.gstatic.com;"
+    />
+
+    <title>Dr. Priyalatha Krishnan Clinic - Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <!-- Top section with logo and menu -->
+        <div class="top-section">
+          <div class="logo">
+            <div class="logo-icon">
+              <svg width="40" height="40" fill="#0052cc" viewBox="0 0 24 24">
+                <path
+                  d="M12 2a10 10 0 1 0 .001 20.001A10 10 0 0 0 12 2zm3 11h-2v2a1 1 0 0 1-2 0v-2H9a1 1 0 0 1 0-2h2V9a1 1 0 0 1 2 0v2h2a1 1 0 0 1 0 2z"
+                />
+              </svg>
+            </div>
+          </div>
+
+          <ul class="menu">
+            <li
+              class="menu-item active"
+              data-url="dashboard-view/dashboard-home.html"
+            >
+              <div class="menu-icon">
+                <svg
+                  width="20"
+                  height="20"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8v-10h-8v10zm0-18v6h8V3h-8z"
+                  />
+                </svg>
+              </div>
+              <div class="menu-text">Dashboard</div>
+            </li>
+
+            <li class="menu-item" data-url="../patient-view/index.html">
+              <div class="menu-icon">
+                <svg
+                  width="20"
+                  height="20"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5z"
+                  />
+                </svg>
+              </div>
+              <div class="menu-text">Patients</div>
+            </li>
+
+            <li class="menu-item" data-url="../appointment-view/index.html">
+              <div class="menu-icon">
+                <svg
+                  width="20"
+                  height="20"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M19 3h-1V1h-2v2H8V1H6v2H5C3.9 3 3 3.9 3 5v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"
+                  />
+                </svg>
+              </div>
+              <div class="menu-text">Appointments</div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Logout always pinned at bottom -->
+        <div class="logout-container">
+          <button class="logout-btn" id="logoutBtn">Logout</button>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <div class="header">
+          <h1 class="page-title">Welcome, Receptionist</h1>
+        </div>
+        <iframe
+          id="content-frame"
+          src="dashboard-view/dashboard-home.html"
+          style="flex-grow: 1; width: 100%; height: 100%; border: none"
+        ></iframe>
+      </main>
+    </div>
+    <script type="module" src="./js/api.js"></script>
+  </body>
+</html>

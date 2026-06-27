@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dr. Priyalatha Krishnan – Dashboard</title>
+    <link href="dash-style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="main-content">
+        <!-- Header with Dashboard Refresh -->
+        <header class="header">
+          <!-- <h1 class="page-title">Welcome, Dr. Priyalatha Krishnan</h1>? -->
+          <div></div>
+          <button
+            id="refreshDashboardBtn"
+            class="refresh-btn"
+            title="Refresh Stats"
+          >
+            <!-- same SVG you already have -->
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M17.65 6.35C16.20 4.90 14.20 4 12 4c-4.41 0-8 3.59-8 8h2l-3 3-3-3h2
+                 c0-5.52 4.48-10 10-10 2.76 0 5.26 1.12 7.07 2.93L17.65 6.35zM6.35 17.65
+                 C7.80 19.10 9.80 20 12 20c4.41 0 8-3.59 8-8h-2l3-3 3 3h-2
+                 c0 5.52-4.48 10-10 10-2.76 0-5.26-1.12-7.07-2.93L6.35 17.65z"
+                fill="currentColor"
+              />
+            </svg>
+          </button>
+        </header>
+
+        <!-- Stats -->
+        <section class="dashboard-summary">
+          <div class="summary-card">
+            <h3>Total Patients</h3>
+            <p id="totalPatients">123</p>
+          </div>
+          <div class="summary-card">
+            <h3>Total Appointments</h3>
+            <p id="totalAppointments">45</p>
+          </div>
+        </section>
+
+        <!-- Announcements with its own Refresh -->
+        <section class="doctor-announcements">
+          <div class="announcements-header">
+            <h3>Announcements from Doctor</h3>
+            <button
+              id="refreshAnnouncementsBtn"
+              class="refresh-btn"
+              title="Refresh Announcements"
+            >
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M6.35 17.65C7.80 19.10 9.80 20 12 20c4.41 0 8-3.59 8-8h-2l3-3 3 3h-2
+                   c0 5.52-4.48 10-10 10-2.76 0-5.26-1.12-7.07-2.93L6.35 17.65z
+                   M17.65 6.35C16.20 4.90 14.20 4 12 4c-4.41 0-8 3.59-8 8h2l-3 3-3-3h2
+                   c0-5.52 4.48-10 10-10 2.76 0 5.26 1.12 7.07 2.93L17.65 6.35z"
+                  fill="currentColor"
+                />
+              </svg>
+            </button>
+          </div>
+          <div id="doctorAnnouncementsList">
+            <!-- dynamically injected -->
+          </div>
+        </section>
+      </div>
+    </div>
+    <script type="module" src="./js/dom.js"></script>
+  </body>
+</html>

@@ -1,0 +1,879 @@
+/*-------------------------------------- 
+  💡 Root Variables and Base Styles
+----------------------------------------*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+
+:root {
+  --primary: #0052cc;
+  --primary-light: rgba(0, 82, 204, 0.1);
+  --primary-hover: #003e99;
+  --white: #fff;
+  --gray: #ccc;
+  --text-dark: #333;
+  --text-light: #555;
+  --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --shadow-mid: 0 4px 12px rgba(0, 0, 0, 0.2);
+  --shadow-heavy: 0 8px 20px rgba(0, 0, 0, 0.4);
+  --border-radius: 12px;
+  --border-radius-lg: 20px;
+  --transition: 0.3s ease;
+  --font: "Poppins", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font);
+  background: url("img/background.png") center/cover no-repeat;
+  color: var(--text-dark);
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+}
+
+/*--------------------------------------
+  ⚙️ Layout
+----------------------------------------*/
+.container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+}
+
+/*--------------------------------------
+  📚 Sidebar
+----------------------------------------*/
+.sidebar {
+  width: 250px;
+  background: var(--white);
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 0 var(--border-radius-lg) var(--border-radius-lg) 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.logo {
+  padding: 24px;
+  text-align: center;
+}
+
+.logo-icon {
+  fill: var(--primary);
+}
+
+.menu {
+  list-style: none;
+  margin-top: 20px;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 24px;
+  color: #6c757d;
+  margin: 4px 16px;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.menu-item:hover,
+.menu-item.active {
+  background: var(--primary-light);
+  color: var(--primary);
+  font-weight: 500;
+}
+
+.menu-item.active {
+  background: var(--primary);
+  color: var(--white);
+}
+
+.menu-item.active .menu-icon svg,
+.menu-item.active .menu-text {
+  color: var(--white);
+  fill: var(--white);
+}
+
+.menu-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.menu-text {
+  margin-left: 12px;
+  font-size: 14px;
+}
+
+/*--------------------------------------
+  🧱 Main Content Area
+----------------------------------------*/
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 30px;
+}
+
+.header {
+  margin-bottom: 24px;
+}
+
+.page-title {
+  font-size: 24px;
+  color: var(--primary);
+}
+
+/*--------------------------------------
+  ⚡ Quick Actions
+----------------------------------------*/
+.quick-actions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.quick-actions .recent-activities {
+  grid-column: 1 / -1;
+  grid-row: 2;
+}
+
+/*--------------------------------------
+  📦 Cards
+----------------------------------------*/
+.card {
+  background: var(--white);
+  border-radius: var(--border-radius-lg);
+  padding: 24px;
+  text-align: center;
+  box-shadow: var(--shadow-mid);
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-heavy);
+}
+
+.icon {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.description {
+  font-size: 14px;
+  color: var(--text-light);
+}
+
+/*--------------------------------------
+  📊 Table Styles
+----------------------------------------*/
+.section-title h4 {
+  color: var(--primary);
+  margin-bottom: 12px;
+}
+
+.data-table {
+  background: var(--white);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-light);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 14px 20px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+th {
+  background: var(--primary-light);
+  color: var(--primary);
+  font-weight: 500;
+}
+
+tr:hover td {
+  background: rgba(0, 82, 204, 0.05);
+}
+
+/*--------------------------------------
+  🚨 Overlay
+----------------------------------------*/
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.overlay.hidden,
+.hidden {
+  display: none;
+}
+
+.overlay-content {
+  background: var(--white);
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  width: 500px;
+  max-width: 90%;
+  position: relative;
+}
+
+/*--------------------------------------
+  ❌ Close Button
+----------------------------------------*/
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 24px;
+  border: none;
+  background: none;
+  color: var(--text-dark);
+  cursor: pointer;
+  transition: color var(--transition);
+}
+
+.close-btn:hover {
+  color: red;
+}
+
+/*--------------------------------------
+  📝 Registration Form
+----------------------------------------*/
+.registration-container {
+  padding: 30px;
+}
+
+.registration-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.registration-header h1 {
+  font-size: 28px;
+  color: var(--primary);
+}
+
+.registration-header p {
+  font-size: 14px;
+  color: var(--text-light);
+}
+
+.form-section {
+  margin-bottom: 24px;
+  border: none;
+}
+
+legend {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 12px;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.half {
+  width: 48%;
+  display: inline-block;
+}
+
+.form-label {
+  font-size: 14px;
+  color: var(--text-dark);
+  margin-bottom: 6px;
+  display: block;
+}
+
+.form-input,
+.form-select {
+  width: 100%;
+  padding: 10px 16px;
+  font-size: 14px;
+  border: 1px solid var(--gray);
+  border-radius: 8px;
+  outline: none;
+  transition: border-color var(--transition);
+}
+
+.form-input:focus,
+.form-select:focus {
+  border-color: var(--primary);
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+/*--------------------------------------
+  ✅ Buttons
+----------------------------------------*/
+.btn-submit,
+.btn-cancel,
+.btn-back {
+  padding: 10px 24px;
+  font-size: 14px;
+  border: none;
+  border-radius: 30px;
+  font-family: var(--font);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-submit {
+  background: #0c66e4;
+  color: var(--white);
+}
+
+.btn-submit:hover {
+  background: var(--primary);
+}
+
+.btn-cancel {
+  background: #ccc;
+  color: var(--text-dark);
+}
+
+.btn-cancel:hover {
+  background: #b3b3b3;
+}
+
+.btn-back {
+  background-color: #f8f9fa;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-back:hover {
+  background-color: #e2e6ea;
+  transform: translateY(-3px);
+}
+
+.btn-back:active {
+  transform: translateY(1px);
+}
+
+.btn-back .back-icon {
+  margin-right: 8px;
+  width: 16px;
+  height: 16px;
+}
+
+/*--------------------------------------
+  📄 Patient Code + Details
+----------------------------------------*/
+.patient-code,
+.patient-detail-card {
+  background: #e3f2fd;
+  border: 1px solid var(--primary);
+  border-radius: 8px;
+  color: var(--primary);
+  font-weight: bold;
+  text-align: center;
+  margin: 10px auto;
+  display: block;
+  z-index: 10;
+}
+
+.patient-code {
+  font-size: 18px;
+  padding: 12px;
+  max-width: 300px;
+}
+
+.patient-detail-card {
+  font-size: 16px;
+  padding: 12px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 300px;
+}
+
+/*--------------------------------------
+  🔢 Pagination
+----------------------------------------*/
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.page-btn {
+  margin: 0 4px;
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid var(--gray);
+  background: var(--white);
+  color: var(--text-dark);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.page-btn:hover {
+  background: #f0f0f0;
+}
+
+.page-btn.active {
+  background: var(--primary);
+  color: var(--white);
+  border-color: var(--primary);
+}
+
+/*--------------------------------------
+  🔍 Search Input Group
+----------------------------------------*/
+.search-container {
+  display: flex;
+  justify-content: flex-end;
+  margin: 1rem 0;
+}
+
+.search-wrapper {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--gray);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  background: var(--white);
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  padding: 10px 14px;
+  width: 220px;
+  font-size: 14px;
+}
+
+.search-button {
+  background: var(--primary);
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition);
+}
+
+.search-button:hover {
+  background: var(--primary-hover);
+}
+
+.search-icon {
+  width: 20px;
+  height: 20px;
+  stroke: var(--white);
+}
+
+.btn-view {
+  font-family: "Poppins", sans-serif;
+  background-color: #0052cc;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  font-size: 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-view:hover {
+  background-color: #003f99;
+  transform: translateY(-1px);
+}
+
+/* Prescription Modal Styles */
+.prescription-modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.prescription-modal-overlay.show {
+  display: flex;
+}
+
+.prescription-modal {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.prescription-preview-box {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 10px;
+  max-height: 500px; /* Increased max-height for better preview */
+  overflow-y: auto;
+  font-size: 16px; /* Increased font size for better readability */
+  color: #333;
+}
+
+.prescription-medication-item {
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #f7f7f7;
+}
+
+.prescription-medication-item span {
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* New Prescription Preview Content Styles */
+#prescriptionPreview {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+#prescriptionPreview h3 {
+  font-size: 20px;
+  margin-bottom: 12px;
+  color: #0052cc;
+}
+
+#prescriptionPreview p {
+  margin-bottom: 12px;
+}
+
+.prescription-medication-item {
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #e3f2fd;
+  margin-bottom: 8px;
+  color: #003580;
+  border: 1px solid #0052cc;
+}
+
+.prescription-form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 15px;
+}
+
+.prescription-btn-cancel {
+  padding: 10px 24px;
+  font-size: 14px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  background-color: #ccc;
+  color: #333;
+}
+
+.prescription-btn-cancel:hover {
+  background-color: #b3b3b3;
+}
+/* Add these new styles to your CSS file */
+/* Prescription Modal Base Styles */
+.prescription-modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.prescription-modal {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.prescription-modal h2 {
+  color: #0052cc;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Prescription List Styles */
+.prescription-list {
+  max-height: 60vh;
+  overflow-y: auto;
+  padding: 10px 0;
+}
+
+.prescription-list-header {
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #0052cc;
+}
+
+.prescription-list-header h3 {
+  margin: 0;
+  color: #0052cc;
+  font-size: 18px;
+}
+
+.prescription-summary-item {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 12px;
+  border-left: 4px solid #0052cc;
+  transition: all 0.2s ease;
+}
+
+.prescription-summary-item:hover {
+  background-color: #f2f7ff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.prescription-summary-header h3 {
+  margin: 0 0 10px 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.prescription-summary-content p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.view-details-btn {
+  background-color: #0052cc;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 6px 16px;
+  margin-top: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+}
+
+.view-details-btn:hover {
+  background-color: #003d99;
+}
+
+/* Prescription Details Styles */
+.prescription-preview-box {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 10px;
+  max-height: 55vh;
+  overflow-y: auto;
+  font-size: 16px;
+  color: #333;
+}
+
+.prescription-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.prescription-header h2 {
+  font-size: 20px;
+  margin: 0;
+  color: #0052cc;
+  text-align: left;
+}
+
+.prescription-content p {
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.prescription-medication-item {
+  margin-bottom: 10px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #f2f7ff;
+  line-height: 1.4;
+}
+
+.prescription-content ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.prescription-content h3 {
+  font-size: 18px;
+  margin: 15px 0 10px 0;
+  color: #0052cc;
+}
+
+.no-prescriptions {
+  text-align: center;
+  padding: 20px;
+  color: #666;
+  font-style: italic;
+}
+
+.loading-text {
+  text-align: center;
+  padding: 20px;
+  color: #0052cc;
+  font-style: italic;
+}
+
+.error-text {
+  text-align: center;
+  padding: 20px;
+  color: #d32f2f;
+  font-style: italic;
+}
+
+/* Button Styles */
+.prescription-form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.prescription-btn-cancel {
+  padding: 8px 20px;
+  font-size: 14px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  background-color: #ccc;
+  color: #333;
+  transition: background-color 0.2s ease;
+}
+
+.prescription-btn-cancel:hover {
+  background-color: #b3b3b3;
+}
+
+.btn.back-to-list {
+  background-color: #0052cc;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 6px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+}
+
+.btn.back-to-list:hover {
+  background-color: #003d99;
+}
+
+/* Utility class for hiding elements */
+.hidden {
+  display: none !important;
+}
+/* Alert Bar Styles */
+.alert-bar {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 300px;
+  max-width: 80%;
+  padding: 12px 20px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  z-index: 10000;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.alert-bar.hidden {
+  opacity: 0;
+  transform: translateX(-50%) translateY(-20px);
+  pointer-events: none;
+}
+.alert-message {
+  flex: 1;
+  margin-right: 15px;
+  font-weight: 500;
+}
+.alert-close {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0.7;
+}
+.alert-close:hover {
+  opacity: 1;
+}
+
+/* Types */
+.alert-success {
+  background: #d4edda;
+  color: #155724;
+  border-left: 4px solid #28a745;
+}
+.alert-error {
+  background: #f8d7da;
+  color: #721c24;
+  border-left: 4px solid #dc3545;
+}
+.alert-warning {
+  background: #fff3cd;
+  color: #856404;
+  border-left: 4px solid #ffc107;
+}
+.alert-info {
+  background: #d1ecf1;
+  color: #0c5460;
+  border-left: 4px solid #17a2b8;
+}

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dr. Priyalatha Krishnan's Clinic – Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- Alert Bar Component (will be dynamically created if needed) -->
+    <div id="alertBar" class="alert-bar alert-success hidden">
+      <div class="alert-message" id="alertMessage">
+        Operation completed successfully!
+      </div>
+      <button class="alert-close" id="alertClose">&times;</button>
+    </div>
+
+    <div class="container">
+      <div class="main-content">
+        <!-- <header class="header">
+          <h1 class="page-title">Dr. Priyalatha Krishnan's Clinic</h1>
+        </header> -->
+
+        <!-- Quick Action Cards -->
+        <section id="quickActions" class="quick-actions">
+          <div class="card add-patient" id="addPatientCard">
+            <div class="icon">
+              <svg width="32" height="32" fill="#0052cc" viewBox="0 0 24 24">
+                <path d="M19 13H13v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+              </svg>
+            </div>
+            <div class="title">Add New Patient</div>
+            <div class="description">Register a new patient in the system</div>
+          </div>
+
+          <div class="card view-patients" id="viewPatientsCard">
+            <div class="icon">
+              <svg width="32" height="32" fill="#0052cc" viewBox="0 0 24 24">
+                <path
+                  d="M19 3h-1V1h-2v2H8V1H6v2H5C3.9 3 3 3.9 3 5v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"
+                />
+              </svg>
+            </div>
+            <div class="title">View All Patients</div>
+            <div class="description">View all registered patients</div>
+          </div>
+        </section>
+
+        <!-- Patient Table -->
+        <section id="recentTable" class="recent-patients" style="display: none">
+          <button class="btn-back">
+            <svg class="back-icon" viewBox="0 0 16 16" fill="currentColor">
+              <path
+                d="M11.5 8H3.707l3.646-3.646a.5.5 0 1 0-.708-.708l-5 5a.5.5 0 0 0 0 .708l5 5a.5.5 0 1 0 .708-.708L3.707 8H11.5a.5.5 0 0 0 0-1z"
+              />
+            </svg>
+            <span class="back-text">Back</span>
+          </button>
+
+          <div class="search-container">
+            <div class="search-wrapper">
+              <input
+                type="text"
+                id="patientSearch"
+                class="search-input"
+                placeholder="Search by patient name..."
+              />
+              <button id="searchBtn" class="search-button">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="search-icon"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1010.5 18a7.5 7.5 0 006.15-3.35z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="data-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Date of birth</th>
+                  <th>Weight</th>
+                  <th>Moblie Number</th>
+                  <th>Prescriptions</th>
+                </tr>
+              </thead>
+              <tbody id="recentBody"></tbody>
+            </table>
+          </div>
+          <!-- Prescription View Modal -->
+          <div id="prescriptionModal" class="prescription-modal-overlay">
+            <div class="prescription-modal">
+              <h2>Prescription Preview</h2>
+              <div
+                id="prescriptionPreview"
+                class="prescription-preview-box"
+              ></div>
+              <div class="prescription-form-buttons">
+                <button
+                  type="button"
+                  class="prescription-btn-cancel"
+                  id="closePrescriptionBtn"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="pagination-container" id="pagination">
+            <button class="page-btn" id="prevPage">« Prev</button>
+            <button class="page-btn" id="nextPage">Next »</button>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- Overlay for Patient Registration -->
+    <div id="overlay" class="overlay hidden">
+      <div class="overlay-content">
+        <button class="close-btn" id="overlayClose">×</button>
+        <div class="registration-container">
+          <header class="registration-header">
+            <h1>New Patient Registration</h1>
+            <p>Enter all required details</p>
+          </header>
+
+          <div class="patient-details-display hidden">
+            <div id="patient-code" class="patient-code"></div>
+            <div class="patient-detail-card"></div>
+          </div>
+
+          <form class="registration-form" id="registrationForm">
+            <fieldset class="form-section">
+              <legend>Personal Information</legend>
+              <div class="form-group half">
+                <label for="first-name" class="form-label">Full Name *</label>
+                <input
+                  type="text"
+                  id="first-name"
+                  class="form-input"
+                  required
+                />
+              </div>
+              <div class="form-group half">
+                <label for="dob" class="form-label">Date of Birth *</label>
+                <input type="date" id="dob" class="form-input" required />
+              </div>
+              <div class="form-group half">
+                <label for="gender" class="form-label">Gender *</label>
+                <select id="gender" class="form-select" required>
+                  <option value="">Select</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div class="form-group half">
+                <label for="weight" class="form-label">Weight (kg):</label>
+                <input
+                  type="number"
+                  id="weight"
+                  name="weight"
+                  class="form-input"
+                  required
+                />
+              </div>
+
+              <div class="form-group half">
+                <label for="phone" class="form-label">Phone Number *</label>
+                <input type="tel" id="phone" class="form-input" required />
+              </div>
+            </fieldset>
+
+            <div class="form-buttons">
+              <button type="button" class="btn-cancel" id="cancelBtn">
+                Cancel
+              </button>
+              <button type="submit" class="btn-submit">Register Patient</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Prescription View Modal -->
+    <div id="prescriptionViewModal" class="prescription-modal-overlay hidden">
+      <div class="prescription-modal">
+        <h2>Prescription Preview</h2>
+        <div id="prescriptionPreview" class="prescription-preview-box"></div>
+        <div class="prescription-form-buttons">
+          <button
+            type="button"
+            class="prescription-btn-cancel"
+            onclick="closePrescriptionView()"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Alert System Script -->
+    <script>
+      // Alert System Implementation
+      window.alertSystem = {
+        // Show success message
+        success: function (message) {
+          this.showAlert(message, "success");
+        },
+
+        // Show error message
+        error: function (message) {
+          this.showAlert(message, "error");
+        },
+
+        // Show warning message
+        warning: function (message) {
+          this.showAlert(message, "warning");
+        },
+
+        // Show info message
+        info: function (message) {
+          this.showAlert(message, "info");
+        },
+
+        // Core function to show alert
+        showAlert: function (message, type = "success") {
+          // Get or create alert bar elements
+          let alertBar = document.getElementById("alertBar");
+
+          // If alert bar doesn't exist, create it
+          if (!alertBar) {
+            alertBar = document.createElement("div");
+            alertBar.id = "alertBar";
+            alertBar.className = "alert-bar hidden";
+
+            const alertMessage = document.createElement("div");
+            alertMessage.id = "alertMessage";
+            alertMessage.className = "alert-message";
+
+            const closeBtn = document.createElement("button");
+            closeBtn.className = "alert-close";
+            closeBtn.innerHTML = "&times;";
+            closeBtn.onclick = this.hideAlert;
+
+            alertBar.appendChild(alertMessage);
+            alertBar.appendChild(closeBtn);
+            document.body.appendChild(alertBar);
+          }
+
+          const alertMessage = document.getElementById("alertMessage");
+
+          // Reset all classes
+          alertBar.className = "alert-bar";
+
+          // Add the proper alert type class
+          alertBar.classList.add(`alert-${type}`);
+
+          // Set the message
+          alertMessage.textContent = message;
+
+          // Remove the hidden class
+          alertBar.classList.remove("hidden");
+
+          // Auto-hide after 5 seconds
+          if (this.timeoutId) {
+            clearTimeout(this.timeoutId);
+          }
+
+          this.timeoutId = setTimeout(() => {
+            this.hideAlert();
+          }, 5000);
+        },
+
+        // Hide alert
+        hideAlert: function () {
+          const alertBar = document.getElementById("alertBar");
+          if (alertBar) {
+            alertBar.classList.add("hidden");
+          }
+        },
+
+        // Store timeout ID to prevent multiple timeouts
+        timeoutId: null,
+      };
+
+      // Add click handler for close button
+      document.addEventListener("DOMContentLoaded", function () {
+        const closeBtn = document.getElementById("alertClose");
+        if (closeBtn) {
+          closeBtn.addEventListener("click", window.alertSystem.hideAlert);
+        }
+      });
+    </script>
+
+    <!-- JavaScript -->
+    <script type="module" src="js/api.js"></script>
+    <script type="module" src="js/dom.js"></script>
+  </body>
+</html>

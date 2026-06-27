@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dr. Priyalatha Krishnan's Clinic – Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <!-- Alert Bar -->
+      <div id="alertBar" class="alert-bar hidden">
+        <div class="alert-message" id="alertMessage"></div>
+        <button class="alert-close" id="alertClose">×</button>
+      </div>
+
+      <div class="main-content">
+        <!-- Prescription Actions -->
+        <section id="quickActions" class="quick-actions">
+          <div class="card add-patient" id="addPrescriptionCard">
+            <div class="icon">
+              <svg width="32" height="32" fill="#0052cc" viewBox="0 0 24 24">
+                <path d="M19 13H13v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+              </svg>
+            </div>
+            <div class="title">Add Prescription</div>
+            <div class="description">
+              Create new prescription for existing patient
+            </div>
+          </div>
+
+          <!-- New Card for Viewing Prescriptions -->
+          <div class="card view-prescription" id="viewPrescriptionCard">
+            <div class="icon">
+              <svg width="32" height="32" fill="#0052cc" viewBox="0 0 24 24">
+                <path
+                  d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"
+                />
+              </svg>
+            </div>
+            <div class="title">View Prescriptions</div>
+            <div class="description">Search and view patient prescriptions</div>
+          </div>
+        </section>
+
+        <!-- Overlay for Patient Registration -->
+        <div id="overlay" class="overlay hidden">
+          <div class="overlay-content">
+            <div class="registration-container">
+              <header class="registration-header">
+                <h1>Patient's Prescription</h1>
+                <p>Enter all required details to create prescription</p>
+              </header>
+
+              <form class="registration-form" id="registrationForm">
+                <fieldset class="form-section">
+                  <legend>Prescription</legend>
+                  <div class="form-group half">
+                    <label for="patient-id" class="form-label"
+                      >Patient Id *</label
+                    >
+                    <input
+                      type="text"
+                      id="patient-id"
+                      class="form-input"
+                      required
+                    />
+                  </div>
+                  <div class="form-group half">
+                    <label for="symptoms" class="form-label">Symptoms *</label>
+                    <input
+                      type="text"
+                      id="symptoms"
+                      class="form-input"
+                      required
+                    />
+                  </div>
+                  <div class="form-group half">
+                    <label for="findings" class="form-label">Findings *</label>
+                    <input
+                      type="text"
+                      id="findings"
+                      class="form-input"
+                      required
+                    />
+                  </div>
+                  <div class="form-group half">
+                    <label for="Diagnosis" class="form-label"
+                      >Diagnosis *</label
+                    >
+                    <input
+                      type="text"
+                      id="Diagnosis"
+                      class="form-input"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Medications</label>
+                    <div id="medication-list"></div>
+                    <button
+                      type="button"
+                      class="btn-submit"
+                      id="addMedicationBtn"
+                    >
+                      Add Medication
+                    </button>
+                  </div>
+                </fieldset>
+                <div class="form-buttons">
+                  <button type="button" class="btn-cancel" id="cancelBtn">
+                    Cancel
+                  </button>
+                  <button type="submit" class="btn-submit">
+                    Add Prescription
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Medication Modal -->
+        <!-- Update for the Medication Modal section only -->
+        <div id="medicationModal" class="modal-overlay">
+          <div class="modal">
+            <h2>Add Medication Details</h2>
+            <div class="form-group">
+              <label for="med-name" class="form-label">Medicine Name *</label>
+              <input type="text" class="form-input" id="med-name" />
+            </div>
+            <div class="form-group">
+              <label for="med-dose" class="form-label">Dosage *</label>
+              <input type="text" class="form-input" id="med-dose" />
+            </div>
+            <div class="form-group">
+              <label for="med-duration" class="form-label"
+                >Duration (days) *</label
+              >
+              <input type="text" class="form-input" id="med-duration" />
+            </div>
+            <div class="form-group">
+              <label for="med-frequency" class="form-label"
+                >Frequency (times/day) *</label
+              >
+              <input type="text" class="form-input" id="med-frequency" />
+            </div>
+            <div class="form-group">
+              <label for="med-notes" class="form-label">Notes</label>
+              <input type="text" class="form-input" id="med-notes" />
+            </div>
+            <div class="form-buttons">
+              <button type="button" class="btn-cancel" id="cancelMedBtn">
+                Cancel
+              </button>
+              <button type="button" class="btn-submit" id="saveMedBtn">
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Prescription View Modal -->
+        <div id="prescriptionModal" class="prescription-modal-overlay">
+          <div class="prescription-modal">
+            <div
+              class="prescription-preview-box"
+              id="prescriptionPreview"
+            ></div>
+            <div class="prescription-form-buttons">
+              <button
+                type="button"
+                class="prescription-btn-cancel"
+                id="closePrescriptionBtn"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script type="module" src="js/alert.js"></script>
+    <script type="module" src="js/dom.js"></script>
+    <script type="module" src="js/api.js"></script>
+  </body>
+</html>

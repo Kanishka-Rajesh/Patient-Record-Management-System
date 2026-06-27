@@ -1,0 +1,6 @@
+{
+  "files.associations": {
+    "patient.h": "c",
+    "medication.h": "c"
+  }
+}

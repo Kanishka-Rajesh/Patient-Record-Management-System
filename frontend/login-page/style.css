@@ -1,0 +1,227 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: url("img/background.png") no-repeat center/cover;
+  font-family: "Poppins", sans-serif;
+}
+.login-container {
+  width: 440px;
+  padding: 30px;
+  background-color: #fff;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.login-header h1 {
+  color: #0052cc;
+  font-size: 30px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 40px;
+}
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+.form-group {
+  margin-bottom: 15px;
+}
+.form-label {
+  display: none;
+}
+.form-input {
+  width: 100%;
+  height: 60px;
+  padding: 0 25px;
+  font-size: 17px;
+  border: none;
+  border-radius: 30px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  outline: none;
+  transition: 0.3s;
+}
+.form-input:focus {
+  width: 105%;
+}
+::placeholder {
+  color: #777;
+  font-weight: 500;
+}
+.form-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 40px;
+}
+.forgot-password {
+  font-size: 14px;
+  color: #5e6c84;
+  text-decoration: none;
+}
+.forgot-password:hover {
+  text-decoration: underline;
+}
+.btn-submit {
+  width: 100%;
+  height: 60px;
+  background-color: #0c66e4;
+  border: none;
+  border-radius: 30px;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.btn-submit:hover {
+  background-color: #0055cc;
+  transform: scale(1.05, 1);
+}
+.error-modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  z-index: 100;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.error-modal-content {
+  background: #e3f2fd;
+  border: 1px solid #0052cc;
+  border-radius: 8px;
+  color: #0052cc;
+  font-weight: bold;
+  text-align: center;
+  margin: 10px auto;
+  display: block;
+  z-index: 10;
+  padding: 16px;
+  max-width: 400px;
+  width: 100%;
+  position: relative;
+}
+
+.error-modal-content p {
+  font-size: 16px;
+  margin: 12px 0;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: #0052cc;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 0;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+.close-btn svg {
+  width: 24px;
+  height: 24px;
+  fill: #0052cc;
+}
+
+.close-btn:hover {
+  color: #003b73; /* Darker shade on hover */
+}
+
+/* Alert Bar System */
+.alert-bar {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 300px;
+  max-width: 80%;
+  padding: 12px 20px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  animation: slideDown 0.3s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.alert-bar.hidden {
+  opacity: 0;
+  transform: translateX(-50%) translateY(-20px);
+  pointer-events: none;
+}
+
+.alert-message {
+  flex-grow: 1;
+  margin-right: 12px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.alert-close {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: inherit;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+  padding: 0;
+  line-height: 1;
+}
+
+.alert-close:hover {
+  opacity: 1;
+}
+
+/* Alert Types */
+.alert-success {
+  background-color: #e7f7ed;
+  color: #0d6832;
+  border-left: 4px solid #2da160;
+}
+
+.alert-error {
+  background-color: #fee7e7;
+  color: #9b1c1c;
+  border-left: 4px solid #e53e3e;
+}
+
+.alert-warning {
+  background-color: #fef6e6;
+  color: #954c08;
+  border-left: 4px solid #ed8936;
+}
+
+.alert-info {
+  background-color: #e6f2ff;
+  color: #1a569d;
+  border-left: 4px solid #3182ce;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateX(-50%) translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+}
